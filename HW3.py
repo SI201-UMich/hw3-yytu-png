@@ -134,8 +134,14 @@ class CouponDispenser:
         Returns:
             None
         """
-        # TODO: Implement per instructions
-        pass
+        if len(self.issued_indices)==0:
+            print("Empty")
+            return
+        counts=[0]*len(self.coupon_cards)
+        for index in self.issued_indices:
+            counts[index]+=1
+        for i in range(len(self.coupon_cards)):
+            print(f"{self.coupon_cards[i]} distribution count: {counts[i]}.")
 
 
 def main():
@@ -152,11 +158,11 @@ def main():
         "Buy 1 get 1 half off",
         "Free extra espresso shot",
     ]
-
+    
     # Uncomment the lines below as you implement each function.
-    # box = CouponDispenser(coupon_cards)
-    # box.distribute_session()
-    # box.tally_distribution()
+    box = CouponDispenser(coupon_cards)
+    box.distribute_session()
+    box.tally_distribution()
     pass
 
 
