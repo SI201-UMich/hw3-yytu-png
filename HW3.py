@@ -97,8 +97,27 @@ class CouponDispenser:
 
         Reminder: Use lists only (no dictionaries).
         """
-        # TODO: Implement per instructions 
-        pass
+        round=1
+        while True:
+            user_input=input()
+            if user_input=="exit":
+                print("Goodbye!")
+                break
+            elif user_input=="show":
+                for i in range(len(self.customer_roster)):
+                    name=self.customer_roster[i]
+                    coupon_index=self.issued_indices[i]
+                    coupon=self.coupon_cards[coupon_index]
+                    print(f"{name}: {coupon}")
+            else:
+                names=user_input.split(",")
+                for name in names:
+                    name=name.strip()
+                    if name!="":
+                        message=self.issue_coupon(name)
+                        if message=="The box is empty.":
+                            print(message)
+            round+=1
 
     def tally_distribution(self):
         """
