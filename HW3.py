@@ -33,7 +33,7 @@ class CouponDispenser:
             coupon_cards (list[str]): list of possible coupons users can receive.
         """
         # TODO: Implement per instructions
-        pass
+        self.coupon_cards = coupon_cards
 
     def __str__(self):
         """
@@ -44,7 +44,12 @@ class CouponDispenser:
             str
         """
         # TODO: Implement per instructions
-        pass
+        str=""
+        for i in range(len(self.coupon_cards)):
+            str+=self.coupon_cards[i]
+            if i!=len(self.coupon_cards)-1:
+                str+="|"
+        return str
 
     def issue_coupon(self, name):
         """
