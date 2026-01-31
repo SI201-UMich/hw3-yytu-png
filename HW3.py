@@ -71,8 +71,9 @@ class CouponDispenser:
             return "The box is empty."
         if name in self.customer_roster:
             index=self.customer_roster.index(name)
-            coupon_index=self.issued_indices[index]
-            return self.coupon_cards[coupon_index]
+            coupon_idx=self.issued_indices[index]
+            coupon = self.coupon_cards[coupon_idx]
+            return f"That name already has a coupon: {coupon}"
 
 
         self.customer_roster.append(name)
@@ -99,7 +100,8 @@ class CouponDispenser:
         """
         round=1
         while True:
-            user_input=input()
+            user_input=input( f"Round {round} - Enter a name (or a comma-separated list), "
+            f"or type 'show' or 'exit': ")
             if user_input=="exit":
                 print("Goodbye!")
                 break
@@ -115,8 +117,7 @@ class CouponDispenser:
                     name=name.strip()
                     if name!="":
                         message=self.issue_coupon(name)
-                        if message=="The box is empty.":
-                            print(message)
+                        print(message)
             round+=1
 
     def tally_distribution(self):
@@ -147,8 +148,8 @@ class CouponDispenser:
 def main():
     """
     Driver function:
-      - Define the coupon_cards list (example coupons below)
-      - Create a CouponDispenser
+      - Define the coupon list (example coupons below)
+      - Create an object
       - Start the interaction via distribute_session()
       - After exit, call tally_distribution() to print the distribution in the terminal
     """
@@ -158,12 +159,10 @@ def main():
         "Buy 1 get 1 half off",
         "Free extra espresso shot",
     ]
-    
-    # Uncomment the lines below as you implement each function.
+
     box = CouponDispenser(coupon_cards)
     box.distribute_session()
     box.tally_distribution()
-    pass
 
 
 # -----------------------
@@ -443,5 +442,5 @@ def test():
 
 if __name__ == "__main__":
     main()
-    # test()
+    test()
 
